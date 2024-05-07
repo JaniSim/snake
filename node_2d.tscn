@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqrpo83uvb3xu"]
+
+[ext_resource type="Script" path="res://node_2d.gd" id="1_1e1ha"]
+[ext_resource type="PackedScene" uid="uid://crcorp2ar1hdx" path="res://snake_scene.tscn" id="2_jqa2g"]
+[ext_resource type="PackedScene" uid="uid://bkvfiq0n1tumt" path="res://game_over.tscn" id="3_nwolr"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mn1po"]
+width = 20
+height = 20
+invert = true
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_1e1ha")
+snake_scene = ExtResource("2_jqa2g")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScorePanel" type="Panel" parent="CanvasLayer"]
+offset_right = 223.0
+offset_bottom = 77.0
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+offset_right = 230.0
+offset_bottom = 72.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Food" type="Sprite2D" parent="."]
+texture = SubResource("NoiseTexture2D_mn1po")
+offset = Vector2(30, 30)
+
+[node name="GameOver" parent="." instance=ExtResource("3_nwolr")]
+process_mode = 2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="restart" from="GameOver" to="." method="_on_game_over_restart"]

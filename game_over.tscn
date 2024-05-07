@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkvfiq0n1tumt"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_abbxf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0w3sy"]
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_abbxf")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 238.0
+offset_top = 156.0
+offset_right = 722.0
+offset_bottom = 386.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 429.0
+offset_top = 178.0
+offset_right = 739.0
+offset_bottom = 293.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_0w3sy")
+uppercase = true
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = -1
+anchor_right = 1.127
+anchor_bottom = 1.156
+offset_left = 367.0
+offset_top = 244.0
+offset_right = -518.0
+offset_bottom = -813.0
+text = "PLAY AGAIN"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
